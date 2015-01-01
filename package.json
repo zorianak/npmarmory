@@ -1,0 +1,27 @@
+{
+  "name": "npmarmory",
+  "version": "0.1.0",
+  "description": "Easy to use module for importing and manipulating character imports from WoW Armory",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zorianak/npmarmory.git"
+  },
+  "keywords": [
+    "battlenet",
+    "armory"
+  ],
+  "author": "Kim Holmes <jadecraft@kimiscool.me>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zorianak/npmarmory/issues"
+  },
+  "homepage": "https://github.com/zorianak/npmarmory",
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "mocha": "^2.1.0"
+  }
+}
