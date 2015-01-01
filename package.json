@@ -4,7 +4,7 @@
   "description": "Easy to use module for importing and manipulating character imports from WoW Armory",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "make test"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,9 @@
   "homepage": "https://github.com/zorianak/npmarmory",
   "devDependencies": {
     "chai": "^1.10.0",
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-simple-mocha": "^0.4.0",
     "mocha": "^2.1.0"
   }
 }
