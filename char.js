@@ -4,7 +4,7 @@
 // the charObj
 
 module.exports = {
-    importChar: function(region, name, realm) {
+    importChar: function(region, name, realm, fn) {
         // first we want to test if the proper info
         // was sent. If not, then we want to error.
         if(region = '' || name = '' || realm = ''){
@@ -25,7 +25,7 @@ module.exports = {
                 }
             }).done(function(data) {
                 // when it's done, we want to call something to actually make the char I guess
-                createChar(data);
+                fn(data);
             });
 
         }
@@ -76,4 +76,7 @@ module.exports = {
         this.Mainhand = items["mainHand"] || 'No Item';
         this.Offhand = items["offHand"] || 'No Item';
     },
+    createChar: function(data){
+//        var sendChar = new Char(
+    }
 };
