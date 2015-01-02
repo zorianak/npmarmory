@@ -2,7 +2,7 @@
   "name": "npmarmory",
   "version": "0.1.0",
   "description": "Easy to use module for importing and manipulating character imports from WoW Armory",
-  "main": "index.js",
+  "main": "char.js",
   "scripts": {
     "test": "make test"
   },
@@ -25,6 +25,7 @@
     "grunt": "^0.4.5",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-simple-mocha": "^0.4.0",
-    "mocha": "^2.1.0"
+    "mocha": "^2.1.0",
+    "sinon": "^1.12.2"
   }
 }
