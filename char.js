@@ -9,6 +9,25 @@ module.exports = {
         // was sent. If not, then we want to error.
         if(region = '' || name = '' || realm = ''){
             console.log('Invalid character');
+        } else {
+            // we have info, let's summon this char
+            // http://us.battle.net/api/wow/character/Windrunner/Caligraphy?fields=stats
+            var url = 'https://' + region + '.battle.net' +'/api/wow/character/' + realm + '/' + char;
+            var statsUrl = url + '?fields=stats,items&locale=en_US&jsonp=callback&apikey=fbgams9zxkqsezwqaavxxk9u8rkvxxkn';
+
+            $.ajax({
+                url: statsUrl,
+                dataType: 'JSONP',
+                jsonpCallback: 'callback',
+                type: 'GET',
+                success: function (data) {
+                    console.log('Done fetching!');
+                }
+            }).done(function(data) {
+                // when it's done, we want to call something to actually make the char I guess
+                createChar(data);
+            });
+
         }
     },
     // Character object used to creat characters
@@ -56,5 +75,5 @@ module.exports = {
         this.Trinket2 = items["trinket2"] || 'No Item';
         this.Mainhand = items["mainHand"] || 'No Item';
         this.Offhand = items["offHand"] || 'No Item';
-    }
+    },
 };
