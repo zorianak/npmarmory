@@ -2,11 +2,13 @@
 // and returns a JS object
 
 var chai = require('chai'),
+    sinon = require('sinon'),
     should = require('chai').should(),
     expect = require('chai').expect,
-    charscript = require('../char'),
-    Char = charscript.Char;
 
+    charscript = require('../char'),
+    Char = charscript.Char,
+    importer = charscript.importChar;
 
 describe('#char', function() {
     it('should have a default name', function() {
