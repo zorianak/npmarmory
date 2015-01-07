@@ -1,3 +1,5 @@
+var $ = require('jquery')(require("jsdom").jsdom().parentWindow);
+
 // This is an object to create a character object
 // We pass in the data from the original importChar
 // function, represented as just "data", and return
@@ -7,12 +9,12 @@ module.exports = {
     importChar: function(region, name, realm, fn) {
         // first we want to test if the proper info
         // was sent. If not, then we want to error.
-        if(region = '' || name = '' || realm = ''){
+        if(region === '' || name === '' || realm === ''){
             console.log('Invalid character');
         } else {
             // we have info, let's summon this char
             // http://us.battle.net/api/wow/character/Windrunner/Caligraphy?fields=stats
-            var url = 'https://' + region + '.battle.net' +'/api/wow/character/' + realm + '/' + char;
+            var url = 'https://' + region + '.battle.net' +'/api/wow/character/' + realm + '/' + name;
             var statsUrl = url + '?fields=stats,items&locale=en_US&jsonp=callback&apikey=fbgams9zxkqsezwqaavxxk9u8rkvxxkn';
 
             $.ajax({
