@@ -13,6 +13,7 @@ that would be your character's name/realm/etc, stats, and items.
 * var Char = npmarmory.Char;
 
 Importing uses ajax, so a call would look like this:
+
     importChar('US', 'Caligraphy', 'Windrunner', function(data) {
         var theChar = data;
         console.log(theChar);
