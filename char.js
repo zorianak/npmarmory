@@ -86,6 +86,7 @@ module.exports = {
         }
 
         console.log(this.race);
+        this.tacoCat = 'Tacocat is a palindrome';
         return this;
     }
 };
