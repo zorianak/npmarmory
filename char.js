@@ -84,5 +84,7 @@ module.exports = {
         if(raceNumber == 4){
             this.race = 'night elf';
         }
+
+        return this;
     }
 };
