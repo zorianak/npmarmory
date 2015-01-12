@@ -77,8 +77,12 @@ module.exports = {
         this.Trinket2 = items["trinket2"] || 'No Item';
         this.Mainhand = items["mainHand"] || 'No Item';
         this.Offhand = items["offHand"] || 'No Item';
-    },
-    createChar: function(data){
-//        var sendChar = new Char(
+
+        // tell what race the char is for race bonuses
+        var raceNumber = data["race"] || '-1';
+
+        if(raceNumber == 4){
+            this.race = 'night elf';
+        }
     }
 };
