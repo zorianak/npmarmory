@@ -85,6 +85,7 @@ module.exports = {
             this.race = 'night elf';
         }
 
+        console.log(this.race);
         return this;
     }
 };
