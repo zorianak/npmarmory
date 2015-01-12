@@ -81,8 +81,18 @@ module.exports = {
         // tell what race the char is for race bonuses
         var raceNumber = data["race"] || '-1';
 
-        if(raceNumber == 4){
+        if(raceNumber == 1){
+            this.race = 'human';
+        } else if (raceNumber == 3){
+            this.race = 'dwarf';
+        } else if(raceNumber == 4){
             this.race = 'night elf';
+        } else if (raceNumber == 7){
+            this.race = 'gnome';
+        } else if(raceNumber == 22){
+            this.race = 'worgen';
+        }else if (raceNumber == 25){
+            this.race = 'pandaren';
         }
 
         console.log(this.race);
