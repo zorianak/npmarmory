@@ -13,9 +13,9 @@ module.exports = {
             console.log('Invalid character');
         } else {
             // we have info, let's summon this char
-            // http://us.battle.net/api/wow/character/Windrunner/Caligraphy?fields=stats,items&locale=en_US&jsonp=callback&apikey=fbgams9zxkqsezwqaavxxk9u8rkvxxkn
+            // http://us.battle.net/api/wow/character/Windrunner/Caligraphy?fields=stats
             var url = 'https://' + region + '.battle.net' +'/api/wow/character/' + realm + '/' + name;
-            var statsUrl = url + '?fields=stats,items&locale=en_US&jsonp=callback&apikey=fbgams9zxkqsezwqaavxxk9u8rkvxxkn';
+            var statsUrl = url + '?fields=stats,items,talents&locale=en_US&jsonp=callback&apikey=fbgams9zxkqsezwqaavxxk9u8rkvxxkn';
 
             $.ajax({
                 url: statsUrl,
@@ -93,21 +93,31 @@ module.exports = {
             this.race = 'worgen';
         }else if (raceNumber == 25){
             this.race = 'pandaren';
-        }else if (raceNumber == 10){
-            this.race = 'blood elf';
-        }else if (raceNumber == 5){
-            this.race = 'undead';
-        }else if (raceNumber == 4){
-            this.race = 'goblin';
-        }else if (raceNumber == 6){
-            this.race = 'tauren';
-        }else if (raceNumber == 8){
-            this.race = 'troll';
-        }else if (raceNumber == 2){
-            this.race = 'orc';
         }
 
-        console.log(this.race);
+        // set talents
+        if(data["talents"][1]["selected"] == true) {
+           var talent = data["talents"][1]["talents"] || "";
+        } else {
+           var talent = data["talents"][0] || "";
+        }
+//        var talent = data["talents"][1] || "";
+        this.talent15 = talent[2]["column"];
+        this.talent15name = talent[2]["spell"]["name"];
+        this.talent30 = talent[1]["column"];
+        this.talent30name = talent[1]["spell"]["name"];
+        this.talent45 = talent[5]["column"];
+        this.talent45name = talent[5]["spell"]["name"];
+        this.talent60 = talent[0]["column"];
+        this.talent60name = talent[0]["spell"]["name"];
+        this.talent75 = talent[3]["column"];
+        this.talent75name = talent[3]["spell"]["name"];
+        this.talent90 = talent[4]["column"];
+        this.talent90name = talent[4]["spell"]["name"];
+        this.talent100 = talent[6]["column"];
+        this.talent100name = talent[6]["spell"]["name"];
+
+//        console.log(talent);
         this.tacoCat = 'Tacocat is a palindrome';
         return this;
     }
