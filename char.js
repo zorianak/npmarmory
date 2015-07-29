@@ -1,3 +1,6 @@
+// Generally don't want to use jQ for NPM modules. However,
+// the tests complain and better to just copy another person's
+// window than to recreat it.
 var $ = require('jquery')(require("jsdom").jsdom().parentWindow);
 
 // This is an object to create a character object
@@ -13,10 +16,17 @@ module.exports = {
             console.log('Invalid character');
         } else {
             // we have info, let's summon this char
-            // http://us.battle.net/api/wow/character/Windrunner/Caligraphy?fields=stats
+            // http://us.battle.net/api/wow/character/Stormreaver/Calligraphy?fields=stats,items,talents&locale=en_US&jsonp=callback&apikey=fbgams9zxkqsezwqaavxxk9u8rkvxxkn
             var url = 'https://' + region + '.battle.net' +'/api/wow/character/' + realm + '/' + name;
             var statsUrl = url + '?fields=stats,items,talents&locale=en_US&jsonp=callback&apikey=fbgams9zxkqsezwqaavxxk9u8rkvxxkn';
-
+            
+            // So, if we wanted to really impress someone, we could do this
+            // in vanilla. Make an httprequest variable, set that, do a ton
+            // of things. However, we're already using jQ for some of our
+            // tests and console returns... and frankly, jQ's ajax
+            // statements are clean enough we MIGHT AS WELL use it here.
+            // Testing both ways, did not see a performance gain either way,
+            // and this will be *far* more maintainable
             $.ajax({
                 url: statsUrl,
                 dataType: 'JSONP',
@@ -48,6 +58,7 @@ module.exports = {
         this.AP = stats["attackPower"] || 0;
         this.Crit = stats["critRating"] || 0;
         this.Mastery = stats["masteryRating"] || 0;
+		this.Multistrike = stats["multistrikeRating"] || 0;
         this.Haste = stats["hasteRating"] || 0;
         this.Versatility = stats["versatilityDamageDoneBonus"] || 0;
         this.VersRating = stats["versatility"] || 0;
@@ -56,6 +67,7 @@ module.exports = {
         this.Mdps = stats["mainHandDmgMax"] || 0;
         this.mdps = stats["mainHandDmgMin"] || 0;
         this.mhs = stats["mainHandSpeed"] || 0;
+        
         this.ohdps = stats["offHandDmgMin"] || 0;
         this.Ohdps = stats["offHandDmgMax"] || 0;
         this.ohs = stats["offHandSpeed"] || 0;
@@ -94,6 +106,7 @@ module.exports = {
         }else if (raceNumber == 25){
             this.race = 'pandaren';
         }
+        // TODO: Add horde
 
         // set talents
         if(data["talents"][1]["selected"] == true) {
@@ -102,20 +115,20 @@ module.exports = {
            var talent = data["talents"][0] || "";
         }
 //        var talent = data["talents"][1] || "";
-        this.talent15 = talent[2]["column"];
-        this.talent15name = talent[2]["spell"]["name"];
-        this.talent30 = talent[1]["column"];
-        this.talent30name = talent[1]["spell"]["name"];
-        this.talent45 = talent[5]["column"];
-        this.talent45name = talent[5]["spell"]["name"];
-        this.talent60 = talent[0]["column"];
-        this.talent60name = talent[0]["spell"]["name"];
-        this.talent75 = talent[3]["column"];
-        this.talent75name = talent[3]["spell"]["name"];
-        this.talent90 = talent[4]["column"];
-        this.talent90name = talent[4]["spell"]["name"];
-        this.talent100 = talent[6]["column"];
-        this.talent100name = talent[6]["spell"]["name"];
+//        this.talent15 = talent[2]["column"];
+//        this.talent15name = talent[2]["spell"]["name"];
+//        this.talent30 = talent[1]["column"];
+//        this.talent30name = talent[1]["spell"]["name"];
+//        this.talent45 = talent[5]["column"];
+//        this.talent45name = talent[5]["spell"]["name"];
+//        this.talent60 = talent[0]["column"];
+//        this.talent60name = talent[0]["spell"]["name"];
+//        this.talent75 = talent[3]["column"];
+//        this.talent75name = talent[3]["spell"]["name"];
+//        this.talent90 = talent[4]["column"];
+//        this.talent90name = talent[4]["spell"]["name"];
+//        this.talent100 = talent[6]["column"];
+//        this.talent100name = talent[6]["spell"]["name"];
 
 //        console.log(talent);
         this.tacoCat = 'Tacocat is a palindrome';
