@@ -10,16 +10,22 @@ var $ = require('jquery')(require("jsdom").jsdom().parentWindow);
 
 module.exports = {
     importChar: function(region, name, realm, fn) {
+		
+    	console.log('Begin import: ' + name);
         // first we want to test if the proper info
         // was sent. If not, then we want to error.
         if(region === '' || name === '' || realm === ''){
             console.log('Invalid character');
         } else {
+			
+        	console.log('Valid character. Contacting Battle.net API!');
             // we have info, let's summon this char
-            // http://us.battle.net/api/wow/character/Stormreaver/Calligraphy?fields=stats,items,talents&locale=en_US&jsonp=callback&apikey=fbgams9zxkqsezwqaavxxk9u8rkvxxkn
-            var url = 'https://' + region + '.battle.net' +'/api/wow/character/' + realm + '/' + name;
-            var statsUrl = url + '?fields=stats,items,talents&locale=en_US&jsonp=callback&apikey=fbgams9zxkqsezwqaavxxk9u8rkvxxkn';
-            
+            // https://us.api.battle.net/wow/character/hyjal/Calligraphy?fields=stats,talents,items&locale=en_US&jsonp=true&apikey=fbgams9zxkqsezwqaavxxk9u8rkvxxkn
+            var url = 'https://' + region + '.api.battle.net/wow/character/' + realm + '/' + name;
+            var statsUrl = url + '?fields=stats,items,talents&locale=en_US&jsonp=true&apikey=fbgams9zxkqsezwqaavxxk9u8rkvxxkn';
+			console.log(url);
+//			console.log(statsUrl);
+//            var statsUrl = 'http://us.battle.net/api/wow/character/Stormreaver/Calligraphy?fields=stats,items,talents&locale=en_US&jsonp=callback&apikey=fbgams9zxkqsezwqaavxxk9u8rkvxxkn';
             // So, if we wanted to really impress someone, we could do this
             // in vanilla. Make an httprequest variable, set that, do a ton
             // of things. However, we're already using jQ for some of our
@@ -36,6 +42,8 @@ module.exports = {
                     console.log('Done fetching!');
                 }
             }).done(function(data) {
+				
+            	console.log('Done!');
                 // when it's done, we want to call something to actually make the char I guess
                 fn(data);
             });
@@ -115,20 +123,20 @@ module.exports = {
            var talent = data["talents"][0] || "";
         }
 //        var talent = data["talents"][1] || "";
-//        this.talent15 = talent[2]["column"];
-//        this.talent15name = talent[2]["spell"]["name"];
-//        this.talent30 = talent[1]["column"];
-//        this.talent30name = talent[1]["spell"]["name"];
-//        this.talent45 = talent[5]["column"];
-//        this.talent45name = talent[5]["spell"]["name"];
-//        this.talent60 = talent[0]["column"];
-//        this.talent60name = talent[0]["spell"]["name"];
-//        this.talent75 = talent[3]["column"];
-//        this.talent75name = talent[3]["spell"]["name"];
-//        this.talent90 = talent[4]["column"];
-//        this.talent90name = talent[4]["spell"]["name"];
-//        this.talent100 = talent[6]["column"];
-//        this.talent100name = talent[6]["spell"]["name"];
+        this.talent15 = talent[2]["column"] || "";
+        this.talent15name = talent[2]["spell"]["name"] || "No Talent";
+        this.talent30 = talent[1]["column"] || "";
+        this.talent30name = talent[1]["spell"]["name"] || "No Talent";
+        this.talent45 = talent[5]["column"] || "";
+        this.talent45name = talent[5]["spell"]["name"] || "No Talent";
+        this.talent60 = talent[0]["column"] || "";
+        this.talent60name = talent[0]["spell"]["name"] || "No Talent";
+        this.talent75 = talent[3]["column"] || "";
+        this.talent75name = talent[3]["spell"]["name"] || "No Talent";
+        this.talent90 = talent[4]["column"] || "";
+        this.talent90name = talent[4]["spell"]["name"] || "No Talent";
+        this.talent100 = talent[6]["column"] || "";
+        this.talent100name = talent[6]["spell"]["name"] || "No Talent";
 
 //        console.log(talent);
         this.tacoCat = 'Tacocat is a palindrome';
